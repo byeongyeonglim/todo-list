@@ -1,32 +1,47 @@
-# TODO LIST 웹앱 (with TailwindCSS, Kakao Map, Flatpickr)
+# 📝 TODO LIST 웹앱
 
-## 프로젝트 개요
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-38BDF8?style=flat&logo=tailwindcss&logoColor=white)
+![Kakao Map](https://img.shields.io/badge/Kakao%20Map-FFCD00?style=flat&logo=kakaotalk&logoColor=black)
+![Flatpickr](https://img.shields.io/badge/Flatpickr-4F5D75?style=flat)
+![SortableJS](https://img.shields.io/badge/SortableJS-3E82F7?style=flat)
+![Dark Mode](https://img.shields.io/badge/Dark%20Mode-22272e?style=flat&logo=github&logoColor=white)
 
-이 프로젝트는 모던 웹 프론트엔드 기술(TailwindCSS, Flatpickr, Kakao Map API, SortableJS 등)을 활용하여 제작한 심플하면서도 실용적인 TODO LIST 웹 애플리케이션입니다. 할 일 관리뿐 아니라 장소(주소검색), 일정(날짜/시간), 다크모드, 드래그&드롭, 필터링 등 다양한 기능을 제공합니다.
+## ✨ 프로젝트 소개
 
-## 주요 기능
-- **할 일 추가/삭제/완료 체크**: 직관적인 UI로 할 일 관리
-- **장소 입력 및 Kakao Map 주소검색 연동**: 장소를 직접 입력하거나 카카오 주소검색으로 선택 가능
-- **일정(날짜/시간) 선택**: Flatpickr를 활용한 모던한 날짜/시간 선택 UI
-- **드래그&드롭 정렬**: SortableJS로 할 일 순서 변경 지원
-- **필터링**: 전체/진행중/완료 상태별 필터링
-- **다크모드**: GitHub 스타일의 다크모드 지원 및 로컬스토리지 상태 저장
-- **반응형 UI**: TailwindCSS 기반의 반응형, 현대적 디자인
-
-## 자바 풀스택 개발자로서의 경험 포인트
-- **RESTful/SPA 프론트엔드 설계 경험**: 프론트엔드 단독 SPA 구조 설계 및 상태 관리, 컴포넌트화 경험
-- **외부 API 연동**: Kakao Map 주소검색 API 등 외부 서비스와의 연동 및 사용자 경험 개선
-- **모던 UI/UX 구현**: TailwindCSS, Flatpickr 등 최신 UI 라이브러리 활용 및 커스텀 다크모드 테마 적용
-- **로컬스토리지 활용**: 브라우저 저장소를 활용한 데이터 영속성 및 사용자 맞춤 환경 제공
-- **접근성/반응성 고려**: 다양한 디바이스와 접근성, UX를 고려한 UI 설계
-- **JS 모듈화 및 이벤트 위임**: 유지보수성과 확장성을 고려한 JS 구조화 및 이벤트 위임 패턴 적용
-- **풀스택 연계 확장성**: 추후 Spring Boot, Node.js 등 백엔드와 연동하여 REST API 기반의 실서비스로 확장 가능
-
-## 실행 방법
-1. `index.html` 파일을 브라우저에서 직접 실행
-2. 할 일, 장소, 시간 입력 후 추가 버튼 클릭
-3. 주소검색, 날짜/시간 선택, 다크모드, 드래그&드롭, 필터 등 다양한 기능 사용 가능
+모던 웹 기술로 만든 심플하고 강력한 TODO LIST!<br>
+장소(주소검색), 일정(날짜/시간), 다크모드, 드래그&드롭, 필터 등 다양한 기능을 한 번에 경험하세요.
 
 ---
 
-이 프로젝트는 프론트엔드 역량뿐 아니라, 자바 기반 백엔드와의 연계, API 설계, 모던 UI/UX 구현 등 풀스택 개발자로서의 경험을 어필할 수 있는 실전형 예제입니다.
+## 🚀 주요 기능
+
+- ➕ **할 일 추가/삭제/완료**
+- 📍 **장소 입력 & 카카오 주소검색**
+- 🕒 **날짜/시간 선택 (Flatpickr)**
+- 🌓 **다크모드 (GitHub 스타일)**
+- 🔀 **드래그&드롭 정렬**
+- 🔎 **상태별 필터(전체/진행중/완료)**
+- 📱 **반응형 UI**
+
+---
+
+## 🛠️ 개발 포인트 (Java Fullstack 관점)
+
+- RESTful SPA 구조 설계 및 상태 관리
+- 외부 API(Kakao Map) 연동 경험
+- 최신 UI/UX 및 다크모드 커스텀 테마 적용
+- 로컬스토리지 활용 데이터 영속성
+- JS 모듈화, 이벤트 위임, 유지보수성 고려
+- 백엔드(Spring/Node) 연동 확장성
+
+---
+
+## ⚡ 사용법
+
+1. `index.html` 파일을 브라우저에서 실행
+2. 할 일, 장소, 시간 입력 후 ➕ 버튼 클릭
+3. 주소검색, 날짜/시간, 다크모드, 드래그&드롭, 필터 등 다양한 기능을 사용해보세요!
+
+---
+
+> 이 프로젝트는 프론트엔드와 백엔드 연계, API 설계, 모던 UI/UX 등 풀스택 개발자로서의 역량을 어필할 수 있는 실전 예제입니다.
