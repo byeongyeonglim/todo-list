@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        };
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+</head>
+<body class="bg-neutral-100 dark:bg-neutral-900 min-h-screen py-8">
+    <div class="container mx-auto px-4">
+        <div class="max-w-md mx-auto bg-white dark:bg-neutral-800 rounded-xl shadow-lg p-6">
+            <div class="flex items-center justify-center mb-6 gap-2">
+                <h1 class="text-2xl font-bold text-center text-neutral-800 dark:text-neutral-100">TO DO LIST</h1>
+                <button id="darkModeToggle" type="button" aria-label="다크모드 토글" class="ml-2 p-2 rounded-full bg-neutral-200 dark:bg-neutral-700 hover:bg-neutral-300 dark:hover:bg-neutral-600 transition-colors" title="다크모드 토글">
+                    <!-- Sun icon (light mode) -->
+                    <svg id="darkIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 block dark:hidden text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="currentColor" />
+                        <g stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="3" />
+                            <line x1="12" y1="21" x2="12" y2="23" />
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                            <line x1="1" y1="12" x2="3" y2="12" />
+                            <line x1="21" y1="12" x2="23" y2="12" />
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                        </g>
+                    </svg>
+                    <!-- Moon icon (dark mode) -->
+                    <svg id="lightIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block text-yellow-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke="currentColor" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="flex flex-col gap-3 mb-6">
+                <div class="grid grid-cols-3 gap-2">
+                    <input type="text" id="todoInput" placeholder="할 일을 입력하세요"
+                        class="col-span-2 p-3 border border-neutral-300 dark:border-neutral-700 rounded-xl focus:outline-none focus:border-blue-500 transition-colors bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100" />
+                    <button id="addTodo"
+                        class="w-full bg-neutral-800 dark:bg-neutral-600 text-white px-4 py-2 rounded-xl hover:bg-neutral-700 dark:hover:bg-neutral-500 focus:outline-none transition-colors flex items-center justify-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                        </svg>
+                        추가
+                    </button>
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                    <input type="text" id="placeInput" placeholder="장소를 입력하거나 검색하세요" readonly
+                        class="col-span-2 p-3 border border-neutral-300 dark:border-neutral-700 rounded-xl focus:outline-none focus:border-blue-500 transition-colors bg-neutral-50 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 cursor-pointer" />
+                    <button id="searchAddressBtn" type="button"
+                        class="w-full bg-neutral-200 dark:bg-neutral-600 text-neutral-700 dark:text-neutral-100 px-4 py-2 rounded-xl hover:bg-neutral-300 dark:hover:bg-neutral-500 whitespace-nowrap">주소검색</button>
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                    <input type="text" id="timeInput" placeholder="날짜/시간 선택"
+                        class="col-span-3 p-3 border border-neutral-300 dark:border-neutral-700 rounded-xl focus:outline-none focus:border-blue-500 transition-colors bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 cursor-pointer" />
+                </div>
+                <div class="flex justify-center gap-2 mt-2">
+                    <button id="filterAll" class="px-3 py-1 rounded-lg bg-neutral-800 dark:bg-neutral-600 text-white">전체</button>
+                    <button id="filterActive" class="px-3 py-1 rounded-lg bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-100 hover:bg-neutral-300 dark:hover:bg-neutral-600">진행중</button>
+                    <button id="filterCompleted" class="px-3 py-1 rounded-lg bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-100 hover:bg-neutral-300 dark:hover:bg-neutral-600">완료</button>
+                </div>
+            </div>
+
+            <ul id="todoList" class="space-y-2">
+                <!-- Todo items will be added here -->
+            </ul>
+        </div>
+    </div>
+    <!-- 카카오 주소검색 모달 -->
+    <div id="addressModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-neutral-800 rounded-xl p-6 w-full max-w-lg relative shadow-xl">
+            <button id="closeModalBtn" class="absolute top-2 right-2 text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 text-2xl">✕</button>
+            <div id="daumPostcode"></div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- 카카오맵 주소검색 API -->
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 다크모드 토글 스크립트
+    const darkToggle = document.getElementById('darkModeToggle');
+    darkToggle.addEventListener('click', () => {
+        const html = document.documentElement;
+        html.classList.toggle('dark');
+        // 아이콘 상태 동기화
+        document.getElementById('darkIcon').classList.toggle('hidden', html.classList.contains('dark'));
+        document.getElementById('lightIcon').classList.toggle('hidden', !html.classList.contains('dark'));
+        // 로컬스토리지에 저장
+        localStorage.setItem('todo-dark', html.classList.contains('dark') ? '1' : '0');
+    });
+    // 페이지 로드 시 다크모드 상태 복원
+    if (localStorage.getItem('todo-dark') === '1') {
+        document.documentElement.classList.add('dark');
+        document.getElementById('darkIcon').classList.add('hidden');
+        document.getElementById('lightIcon').classList.remove('hidden');
+    } else {
+        document.getElementById('darkIcon').classList.remove('hidden');
+        document.getElementById('lightIcon').classList.add('hidden');
+    }
+});
+    </script>
+    <style>
+/* Github 다크모드 느낌의 todo item 스타일 */
+#todoList > li {
+    /* 라이트 모드 */
+    background-color: #fff;
+    border: 1px solid #e1e4e8;
+    color: #24292f;
+    transition: background 0.2s, color 0.2s;
+}
+#todoList > li:hover {
+    background-color: #f6f8fa;
+}
+.dark #todoList > li {
+    background-color: #22272e !important;
+    border-color: #373e47 !important;
+    color: #adbac7 !important;
+}
+.dark #todoList > li:hover {
+    background-color: #2d333b !important;
+}
+.dark #todoList input[type="checkbox"] {
+    accent-color: #539bf5;
+    background: #373e47;
+    border-color: #444c56;
+}
+.dark #todoList .toggle-checkbox:checked {
+    accent-color: #539bf5;
+}
+.dark #todoList .delete-btn {
+    color: #768390 !important;
+}
+.dark #todoList .delete-btn:hover {
+    color: #f47067 !important;
+}
+.dark #todoList span, .dark #todoList svg {
+    color: #adbac7 !important;
+    fill: #adbac7 !important;
+}
+
+/* 분류 버튼 다크모드 하이라이트 (더 어두운 녹청색) */
+.dark #filterAll.bg-neutral-800,
+.dark #filterActive.bg-neutral-800,
+.dark #filterCompleted.bg-neutral-800,
+.dark #filterAll.bg-neutral-800.text-white,
+.dark #filterActive.bg-neutral-800.text-white,
+.dark #filterCompleted.bg-neutral-800.text-white {
+    background-color: #115e59 !important; /* teal-800 */
+    color: #99f6e4 !important; /* teal-200 */
+    border: none;
+}
+.dark #filterAll:hover,
+.dark #filterActive:hover,
+.dark #filterCompleted:hover {
+    filter: brightness(1.08);
+}
+</style>
+</body>
+</html>
